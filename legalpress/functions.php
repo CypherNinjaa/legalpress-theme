@@ -18,7 +18,7 @@ if (!defined('ABSPATH')) {
  * Define theme constants with existence check - SECURITY
  */
 if (!defined('LEGALPRESS_VERSION')) {
-    define('LEGALPRESS_VERSION', '1.0.0');
+    define('LEGALPRESS_VERSION', '2.0.1');
 }
 if (!defined('LEGALPRESS_DIR')) {
     define('LEGALPRESS_DIR', get_template_directory());
@@ -88,7 +88,7 @@ add_action('after_setup_theme', 'legalpress_content_width', 0);
 /**
  * Enqueue Scripts and Styles - PERFORMANCE OPTIMIZED
  *
- * @since 1.0.0
+ * @since 2.0.0
  * @return void
  */
 function legalpress_scripts()
@@ -101,23 +101,35 @@ function legalpress_scripts()
         null
     );
 
-    // Main stylesheet
+    // Main stylesheet (base, typography, reset, utilities)
     wp_enqueue_style('legalpress-style', get_stylesheet_uri(), array('legalpress-google-fonts'), LEGALPRESS_VERSION);
 
+    // Header & Navigation styles
+    wp_enqueue_style('legalpress-header', LEGALPRESS_URI . '/assets/css/header.css', array('legalpress-style'), LEGALPRESS_VERSION);
+
+    // Hero section styles
+    wp_enqueue_style('legalpress-hero', LEGALPRESS_URI . '/assets/css/hero.css', array('legalpress-header'), LEGALPRESS_VERSION);
+
+    // Post cards styles
+    wp_enqueue_style('legalpress-cards', LEGALPRESS_URI . '/assets/css/cards.css', array('legalpress-hero'), LEGALPRESS_VERSION);
+
+    // Single post & content styles
+    wp_enqueue_style('legalpress-single', LEGALPRESS_URI . '/assets/css/single.css', array('legalpress-cards'), LEGALPRESS_VERSION);
+
+    // Footer & Sidebar styles
+    wp_enqueue_style('legalpress-footer', LEGALPRESS_URI . '/assets/css/footer.css', array('legalpress-single'), LEGALPRESS_VERSION);
+
     // Animation styles
-    wp_enqueue_style('legalpress-animations', LEGALPRESS_URI . '/assets/css/animations.css', array('legalpress-style'), LEGALPRESS_VERSION);
+    wp_enqueue_style('legalpress-animations', LEGALPRESS_URI . '/assets/css/animations.css', array('legalpress-footer'), LEGALPRESS_VERSION);
 
-    // Premium styles
-    wp_enqueue_style('legalpress-premium', LEGALPRESS_URI . '/assets/css/premium.css', array('legalpress-animations'), LEGALPRESS_VERSION);
+    // Skeleton loading styles
+    wp_enqueue_style('legalpress-skeleton', LEGALPRESS_URI . '/assets/css/skeleton.css', array('legalpress-animations'), LEGALPRESS_VERSION);
 
-    // Component styles
-    wp_enqueue_style('legalpress-components', LEGALPRESS_URI . '/assets/css/components.css', array('legalpress-premium'), LEGALPRESS_VERSION);
+    // Responsive styles (load last)
+    wp_enqueue_style('legalpress-responsive', LEGALPRESS_URI . '/assets/css/responsive.css', array('legalpress-skeleton'), LEGALPRESS_VERSION);
 
     // Main JavaScript
     wp_enqueue_script('legalpress-main', LEGALPRESS_URI . '/assets/js/main.js', array(), LEGALPRESS_VERSION, true);
-
-    // Advanced JavaScript (animations, skeleton loading, etc.)
-    wp_enqueue_script('legalpress-advanced', LEGALPRESS_URI . '/assets/js/advanced.js', array('legalpress-main'), LEGALPRESS_VERSION, true);
 
     wp_localize_script('legalpress-main', 'legalpressData', array(
         'ajaxUrl' => esc_url(admin_url('admin-ajax.php')),

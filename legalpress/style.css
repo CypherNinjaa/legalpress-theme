@@ -4,7 +4,7 @@ Theme URI: https://lawandbeyond.in/legalpress
 Author: Law & Beyond
 Author URI: https://lawandbeyond.in
 Description: A modern, professional WordPress theme for legal news, judgments, and editorial content.
-Version: 2.0.0
+Version: 2.0.1
 Requires at least: 6.0
 Tested up to: 6.4
 Requires PHP: 7.4
@@ -30,6 +30,7 @@ Tags: news, legal, journal, editorial, blog, custom-menu, featured-images
 	--color-accent: #d4a84b;
 	--color-accent-light: #e4c078;
 	--color-accent-dark: #b8923f;
+	--color-accent-alpha: rgba(212, 168, 75, 0.15);
 
 	/* Semantic Colors */
 	--color-success: #10b981;
@@ -189,6 +190,9 @@ Tags: news, legal, journal, editorial, blog, custom-menu, featured-images
 	--color-bg-secondary: #1e293b;
 	--color-bg-tertiary: #334155;
 	--color-bg-elevated: #1e293b;
+
+	/* Accent Alpha - Dark Theme */
+	--color-accent-alpha: rgba(212, 168, 75, 0.2);
 
 	/* Text Colors - Dark Theme */
 	--color-text-primary: #f1f5f9;
