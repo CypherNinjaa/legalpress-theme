@@ -4,7 +4,7 @@ Theme URI: https://lawandbeyond.in/legalpress
 Author: Law & Beyond
 Author URI: https://lawandbeyond.in
 Description: A modern, professional WordPress theme for legal news, judgments, and editorial content.
-Version: 2.0.1
+Version: 2.0.2
 Requires at least: 6.0
 Tested up to: 6.4
 Requires PHP: 7.4
@@ -582,6 +582,70 @@ mark {
 .section-lg {
 	padding-top: var(--space-24);
 	padding-bottom: var(--space-24);
+}
+
+/* Section Headers */
+.section-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	gap: var(--space-4);
+	margin-bottom: var(--space-8);
+}
+
+.section-title {
+	display: flex;
+	align-items: center;
+	gap: var(--space-3);
+	font-family: var(--font-heading);
+	font-size: var(--text-2xl);
+	font-weight: var(--font-bold);
+	color: var(--color-text-primary);
+	margin: 0;
+}
+
+.section-title__icon,
+.section-title-icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 32px;
+	height: 32px;
+}
+
+.section-title__icon svg,
+.section-title-icon svg {
+	width: 24px;
+	height: 24px;
+}
+
+.section-link {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--space-2);
+	font-size: var(--text-sm);
+	font-weight: var(--font-semibold);
+	color: var(--color-accent-dark);
+	transition: color var(--duration-fast) var(--ease-out),
+		gap var(--duration-fast) var(--ease-out);
+}
+
+.section-link:hover {
+	color: var(--color-accent);
+	gap: var(--space-3);
+}
+
+.section-link__icon,
+.section-link-icon {
+	width: 16px;
+	height: 16px;
+	transition: transform var(--duration-fast) var(--ease-out);
+}
+
+.section-link:hover .section-link__icon,
+.section-link:hover .section-link-icon {
+	transform: translateX(4px);
 }
 
 /* Flex utilities */

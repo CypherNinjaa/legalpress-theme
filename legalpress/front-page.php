@@ -52,16 +52,17 @@ $displayed_posts = array();
                         'loading' => 'eager'
                     )); ?>
                 <?php else: ?>
-                    <div class="hero__background-image" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);"></div>
+                    <div class="hero__background-image" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);">
+                    </div>
                 <?php endif; ?>
             </div>
 
             <!-- Hero Overlay -->
             <div class="hero__overlay"></div>
-            
+
             <!-- Hero Pattern -->
             <div class="hero__pattern"></div>
-            
+
             <!-- Hero Decoration -->
             <div class="hero__decoration"></div>
 
@@ -69,9 +70,10 @@ $displayed_posts = array();
             <div class="container">
                 <div class="hero__content reveal">
                     <?php if ($category): ?>
-                        <a href="<?php echo esc_url(get_category_link($category->term_id)); ?>" class="hero__category animate-pop-in">
+                        <a href="<?php echo esc_url(get_category_link($category->term_id)); ?>"
+                            class="hero__category animate-pop-in">
                             <svg class="hero__category-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+                                <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
                             </svg>
                             <?php echo esc_html($category->name); ?>
                         </a>
@@ -94,17 +96,17 @@ $displayed_posts = array();
                         </div>
                         <div class="hero__meta-item">
                             <svg class="hero__meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-                                <line x1="16" y1="2" x2="16" y2="6"/>
-                                <line x1="8" y1="2" x2="8" y2="6"/>
-                                <line x1="3" y1="10" x2="21" y2="10"/>
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                                <line x1="16" y1="2" x2="16" y2="6" />
+                                <line x1="8" y1="2" x2="8" y2="6" />
+                                <line x1="3" y1="10" x2="21" y2="10" />
                             </svg>
                             <span><?php echo esc_html(get_the_date()); ?></span>
                         </div>
                         <div class="hero__meta-item">
                             <svg class="hero__meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="12" cy="12" r="10"/>
-                                <polyline points="12 6 12 12 16 14"/>
+                                <circle cx="12" cy="12" r="10" />
+                                <polyline points="12 6 12 12 16 14" />
                             </svg>
                             <span><?php echo esc_html(legalpress_reading_time()); ?></span>
                         </div>
@@ -113,14 +115,14 @@ $displayed_posts = array();
                     <a href="<?php the_permalink(); ?>" class="hero__cta btn-primary">
                         Read Article
                         <svg class="hero__cta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <line x1="5" y1="12" x2="19" y2="12"/>
-                            <polyline points="12 5 19 12 12 19"/>
+                            <line x1="5" y1="12" x2="19" y2="12" />
+                            <polyline points="12 5 19 12 12 19" />
                         </svg>
                     </a>
                 </div>
             </div>
 
-        <?php
+            <?php
         endwhile;
         wp_reset_postdata();
     else:
@@ -129,12 +131,13 @@ $displayed_posts = array();
         <div class="hero__background" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);"></div>
         <div class="hero__overlay"></div>
         <div class="hero__pattern"></div>
-        
+
         <div class="container">
             <div class="hero__content reveal">
                 <span class="hero__category animate-pop-in">Welcome</span>
                 <h1 class="hero__title gradient-text-hero">Welcome to LegalPress</h1>
-                <p class="hero__excerpt">Your trusted source for legal news, judgments, and expert analysis. Stay informed with the latest developments in law and justice.</p>
+                <p class="hero__excerpt">Your trusted source for legal news, judgments, and expert analysis. Stay informed
+                    with the latest developments in law and justice.</p>
             </div>
         </div>
     <?php endif; ?>
@@ -143,21 +146,21 @@ $displayed_posts = array();
 <!-- Latest News Section -->
 <section class="section section--latest-news">
     <div class="container">
-        
+
         <!-- Section Header -->
         <div class="section-header reveal">
             <h2 class="section-title">
                 <svg class="section-title__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/>
-                    <polyline points="13 2 13 9 20 9"/>
+                    <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z" />
+                    <polyline points="13 2 13 9 20 9" />
                 </svg>
                 Latest News
             </h2>
             <a href="<?php echo esc_url(get_permalink(get_option('page_for_posts'))); ?>" class="section-link">
                 View All Articles
                 <svg class="section-link__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <line x1="5" y1="12" x2="19" y2="12"/>
-                    <polyline points="12 5 19 12 12 19"/>
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                    <polyline points="12 5 19 12 12 19" />
                 </svg>
             </a>
         </div>
@@ -166,7 +169,7 @@ $displayed_posts = array();
         <div class="posts-grid stagger-children">
             <?php
             $latest_query = legalpress_get_latest_posts(6, $displayed_posts);
-            
+
             if ($latest_query->have_posts()):
                 $post_count = 0;
                 while ($latest_query->have_posts()):
@@ -175,74 +178,78 @@ $displayed_posts = array();
                     $post_count++;
                     $is_featured = ($post_count === 1);
                     ?>
-                    
-                    <article class="post-card <?php echo $is_featured ? 'post-card--featured' : ''; ?> reveal hover-lift" data-animate="fade-in-up">
-                        <div class="post-card__image-wrapper hover-zoom">
+
+                    <article class="post-card <?php echo $is_featured ? 'post-card-featured' : ''; ?> reveal hover-lift"
+                        data-animate="fade-in-up">
+                        <div class="post-card-image hover-zoom">
                             <?php if (has_post_thumbnail()): ?>
                                 <?php the_post_thumbnail('legalpress-card', array(
-                                    'class' => 'post-card__image',
+                                    'class' => 'post-card-img',
                                     'loading' => 'lazy'
                                 )); ?>
                             <?php else: ?>
-                                <div class="post-card__image post-card__image--placeholder">
-                                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" opacity="0.3">
-                                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-                                        <circle cx="8.5" cy="8.5" r="1.5"/>
-                                        <polyline points="21 15 16 10 5 21"/>
+                                <div class="post-card-placeholder">
+                                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="1" opacity="0.3">
+                                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                                        <circle cx="8.5" cy="8.5" r="1.5" />
+                                        <polyline points="21 15 16 10 5 21" />
                                     </svg>
                                 </div>
                             <?php endif; ?>
-                            
-                            <div class="post-card__image-overlay"></div>
-                            
+
+                            <div class="post-card-image-overlay"></div>
+
                             <?php
                             $category = legalpress_get_first_category();
                             if ($category):
-                                $cat_class = 'category-badge--' . esc_attr($category->slug);
-                            ?>
-                                <a href="<?php echo esc_url(get_category_link($category->term_id)); ?>" 
-                                   class="post-card__category <?php echo esc_attr($cat_class); ?>">
+                                $cat_class = 'category-' . esc_attr($category->slug);
+                                ?>
+                                <a href="<?php echo esc_url(get_category_link($category->term_id)); ?>"
+                                    class="post-card-category <?php echo esc_attr($cat_class); ?>">
                                     <?php echo esc_html($category->name); ?>
                                 </a>
                             <?php endif; ?>
-                            
-                            <span class="post-card__read-time">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <circle cx="12" cy="12" r="10"/>
-                                    <polyline points="12 6 12 12 16 14"/>
+
+                            <span class="post-card-read-time">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <polyline points="12 6 12 12 16 14" />
                                 </svg>
                                 <?php echo esc_html(legalpress_reading_time()); ?>
                             </span>
                         </div>
-                        
-                        <div class="post-card__content">
-                            <h3 class="post-card__title">
+
+                        <div class="post-card-content">
+                            <h3 class="post-card-title">
                                 <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
                             </h3>
-                            
+
                             <?php if ($is_featured && has_excerpt()): ?>
-                                <p class="post-card__excerpt"><?php echo esc_html(wp_trim_words(get_the_excerpt(), 25)); ?></p>
+                                <p class="post-card-excerpt"><?php echo esc_html(wp_trim_words(get_the_excerpt(), 25)); ?></p>
                             <?php endif; ?>
-                            
-                            <div class="post-card__meta">
-                                <div class="post-card__author">
-                                    <?php echo get_avatar(get_the_author_meta('ID'), 28, '', '', array('class' => 'post-card__author-avatar')); ?>
+
+                            <div class="post-card-footer">
+                                <div class="post-card-author">
+                                    <?php echo get_avatar(get_the_author_meta('ID'), 28, '', '', array('class' => 'post-card-author-avatar')); ?>
                                     <span><?php the_author(); ?></span>
                                 </div>
-                                <div class="post-card__date">
-                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-                                        <line x1="16" y1="2" x2="16" y2="6"/>
-                                        <line x1="8" y1="2" x2="8" y2="6"/>
-                                        <line x1="3" y1="10" x2="21" y2="10"/>
+                                <div class="post-card-date">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                                        <line x1="16" y1="2" x2="16" y2="6" />
+                                        <line x1="8" y1="2" x2="8" y2="6" />
+                                        <line x1="3" y1="10" x2="21" y2="10" />
                                     </svg>
                                     <span><?php echo esc_html(get_the_date('M j')); ?></span>
                                 </div>
                             </div>
                         </div>
                     </article>
-                    
-                <?php
+
+                    <?php
                 endwhile;
                 wp_reset_postdata();
             endif;
@@ -276,8 +283,9 @@ $category_sections = array(
 
 foreach ($category_sections as $index => $cat_section):
     $category = get_category_by_slug($cat_section['slug']);
-    if (!$category) continue;
-    
+    if (!$category)
+        continue;
+
     $cat_query = new WP_Query(array(
         'category_name' => $cat_section['slug'],
         'posts_per_page' => 4,
@@ -286,89 +294,92 @@ foreach ($category_sections as $index => $cat_section):
         'update_post_meta_cache' => false,
         'update_post_term_cache' => false
     ));
-    
-    if (!$cat_query->have_posts()) continue;
-?>
 
-<section class="section section--category section--<?php echo esc_attr($cat_section['slug']); ?>" 
-         style="--section-color: <?php echo esc_attr($cat_section['color']); ?>">
-    <div class="container">
-        
-        <!-- Section Header -->
-        <div class="section-header reveal" data-animate="fade-in-up">
-            <h2 class="section-title">
-                <span class="section-title__icon" style="color: <?php echo esc_attr($cat_section['color']); ?>">
-                    <?php echo $cat_section['icon']; ?>
-                </span>
-                <?php echo esc_html($cat_section['title']); ?>
-            </h2>
-            <a href="<?php echo esc_url(get_category_link($category->term_id)); ?>" class="section-link">
-                View All
-                <svg class="section-link__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <line x1="5" y1="12" x2="19" y2="12"/>
-                    <polyline points="12 5 19 12 12 19"/>
-                </svg>
-            </a>
-        </div>
+    if (!$cat_query->have_posts())
+        continue;
+    ?>
 
-        <!-- Category Posts Grid -->
-        <div class="posts-grid posts-grid--4 stagger-children">
-            <?php
-            while ($cat_query->have_posts()):
-                $cat_query->the_post();
-                $displayed_posts[] = get_the_ID();
-            ?>
-                <article class="post-card reveal hover-lift" data-animate="fade-in-up">
-                    <div class="post-card__image-wrapper hover-zoom">
-                        <?php if (has_post_thumbnail()): ?>
-                            <?php the_post_thumbnail('legalpress-card', array(
-                                'class' => 'post-card__image',
-                                'loading' => 'lazy'
-                            )); ?>
-                        <?php else: ?>
-                            <div class="post-card__image post-card__image--placeholder" 
-                                 style="background: linear-gradient(135deg, <?php echo esc_attr($cat_section['color']); ?>22, <?php echo esc_attr($cat_section['color']); ?>44);">
-                                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="<?php echo esc_attr($cat_section['color']); ?>" stroke-width="1" opacity="0.5">
-                                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-                                    <circle cx="8.5" cy="8.5" r="1.5"/>
-                                    <polyline points="21 15 16 10 5 21"/>
+    <section class="section section--category section--<?php echo esc_attr($cat_section['slug']); ?>"
+        style="--section-color: <?php echo esc_attr($cat_section['color']); ?>">
+        <div class="container">
+
+            <!-- Section Header -->
+            <div class="section-header reveal" data-animate="fade-in-up">
+                <h2 class="section-title">
+                    <span class="section-title__icon" style="color: <?php echo esc_attr($cat_section['color']); ?>">
+                        <?php echo $cat_section['icon']; ?>
+                    </span>
+                    <?php echo esc_html($cat_section['title']); ?>
+                </h2>
+                <a href="<?php echo esc_url(get_category_link($category->term_id)); ?>" class="section-link">
+                    View All
+                    <svg class="section-link__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="5" y1="12" x2="19" y2="12" />
+                        <polyline points="12 5 19 12 12 19" />
+                    </svg>
+                </a>
+            </div>
+
+            <!-- Category Posts Grid -->
+            <div class="posts-grid posts-grid-4 stagger-children">
+                <?php
+                while ($cat_query->have_posts()):
+                    $cat_query->the_post();
+                    $displayed_posts[] = get_the_ID();
+                    ?>
+                    <article class="post-card reveal hover-lift" data-animate="fade-in-up">
+                        <div class="post-card-image hover-zoom">
+                            <?php if (has_post_thumbnail()): ?>
+                                <?php the_post_thumbnail('legalpress-card', array(
+                                    'class' => 'post-card-img',
+                                    'loading' => 'lazy'
+                                )); ?>
+                            <?php else: ?>
+                                <div class="post-card-placeholder"
+                                    style="background: linear-gradient(135deg, <?php echo esc_attr($cat_section['color']); ?>22, <?php echo esc_attr($cat_section['color']); ?>44);">
+                                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none"
+                                        stroke="<?php echo esc_attr($cat_section['color']); ?>" stroke-width="1" opacity="0.5">
+                                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                                        <circle cx="8.5" cy="8.5" r="1.5" />
+                                        <polyline points="21 15 16 10 5 21" />
+                                    </svg>
+                                </div>
+                            <?php endif; ?>
+
+                            <div class="post-card-image-overlay"></div>
+
+                            <span class="post-card-read-time">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <polyline points="12 6 12 12 16 14" />
                                 </svg>
-                            </div>
-                        <?php endif; ?>
-                        
-                        <div class="post-card__image-overlay"></div>
-                        
-                        <span class="post-card__read-time">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="12" cy="12" r="10"/>
-                                <polyline points="12 6 12 12 16 14"/>
-                            </svg>
-                            <?php echo esc_html(legalpress_reading_time()); ?>
-                        </span>
-                    </div>
-                    
-                    <div class="post-card__content">
-                        <h3 class="post-card__title">
-                            <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-                        </h3>
-                        
-                        <div class="post-card__meta">
-                            <div class="post-card__author">
-                                <?php echo get_avatar(get_the_author_meta('ID'), 28, '', '', array('class' => 'post-card__author-avatar')); ?>
-                                <span><?php the_author(); ?></span>
-                            </div>
-                            <div class="post-card__date">
-                                <span><?php echo esc_html(get_the_date('M j')); ?></span>
+                                <?php echo esc_html(legalpress_reading_time()); ?>
+                            </span>
+                        </div>
+
+                        <div class="post-card-content">
+                            <h3 class="post-card-title">
+                                <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+                            </h3>
+
+                            <div class="post-card-footer">
+                                <div class="post-card-author">
+                                    <?php echo get_avatar(get_the_author_meta('ID'), 28, '', '', array('class' => 'post-card-author-avatar')); ?>
+                                    <span><?php the_author(); ?></span>
+                                </div>
+                                <div class="post-card-date">
+                                    <span><?php echo esc_html(get_the_date('M j')); ?></span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </article>
-            <?php endwhile; ?>
+                    </article>
+                <?php endwhile; ?>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<?php
+    <?php
     wp_reset_postdata();
 endforeach;
 ?>
@@ -379,37 +390,37 @@ endforeach;
         <div class="newsletter-box glass-card">
             <div class="newsletter-box__content">
                 <h2 class="newsletter-box__title gradient-text">Stay Updated</h2>
-                <p class="newsletter-box__text">Get the latest legal news and analysis delivered to your inbox weekly. Join thousands of legal professionals who trust LegalPress.</p>
-                
+                <p class="newsletter-box__text">Get the latest legal news and analysis delivered to your inbox weekly.
+                    Join thousands of legal professionals who trust LegalPress.</p>
+
                 <form class="newsletter-form" action="#" method="post">
                     <div class="newsletter-form__group">
-                        <input type="email" 
-                               name="email" 
-                               placeholder="Enter your email address" 
-                               class="newsletter-form__input" 
-                               required>
+                        <input type="email" name="email" placeholder="Enter your email address"
+                            class="newsletter-form__input" required>
                         <button type="submit" class="newsletter-form__btn btn btn-primary">
                             Subscribe
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <line x1="22" y1="2" x2="11" y2="13"/>
-                                <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <line x1="22" y1="2" x2="11" y2="13" />
+                                <polygon points="22 2 15 22 11 13 2 9 22 2" />
                             </svg>
                         </button>
                     </div>
                     <p class="newsletter-form__note">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
                         </svg>
                         We respect your privacy. Unsubscribe at any time.
                     </p>
                 </form>
             </div>
-            
+
             <div class="newsletter-box__decoration">
                 <svg viewBox="0 0 200 200" fill="none">
-                    <circle cx="100" cy="100" r="80" stroke="currentColor" stroke-width="0.5" opacity="0.1"/>
-                    <circle cx="100" cy="100" r="60" stroke="currentColor" stroke-width="0.5" opacity="0.15"/>
-                    <circle cx="100" cy="100" r="40" stroke="currentColor" stroke-width="0.5" opacity="0.2"/>
+                    <circle cx="100" cy="100" r="80" stroke="currentColor" stroke-width="0.5" opacity="0.1" />
+                    <circle cx="100" cy="100" r="60" stroke="currentColor" stroke-width="0.5" opacity="0.15" />
+                    <circle cx="100" cy="100" r="40" stroke="currentColor" stroke-width="0.5" opacity="0.2" />
                 </svg>
             </div>
         </div>

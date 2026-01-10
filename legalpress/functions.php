@@ -18,7 +18,7 @@ if (!defined('ABSPATH')) {
  * Define theme constants with existence check - SECURITY
  */
 if (!defined('LEGALPRESS_VERSION')) {
-    define('LEGALPRESS_VERSION', '2.0.1');
+    define('LEGALPRESS_VERSION', '2.0.2');
 }
 if (!defined('LEGALPRESS_DIR')) {
     define('LEGALPRESS_DIR', get_template_directory());
@@ -240,7 +240,7 @@ function legalpress_category_badge($class = '')
     $category = legalpress_get_first_category();
     if ($category) {
         printf(
-            '<a href="%s" class="post-card__category %s">%s</a>',
+            '<a href="%s" class="post-card-category %s">%s</a>',
             esc_url(get_category_link($category->term_id)),
             esc_attr(sanitize_html_class($class)),
             esc_html($category->name)
