@@ -502,26 +502,40 @@
 
 	const copyLink = {
 		init() {
-			const buttons = document.querySelectorAll(".share-btn-copy");
+			const buttons = document.querySelectorAll(".share-btn--copy");
 
 			buttons.forEach((btn) => {
 				btn.addEventListener("click", (e) => {
 					e.preventDefault();
-					this.copyToClipboard(window.location.href);
-
-					// Show feedback
-					const originalTitle = btn.getAttribute("title");
-					btn.setAttribute("title", "Copied!");
-					setTimeout(() => {
-						btn.setAttribute("title", originalTitle || "Copy link");
-					}, 2000);
+					const url = btn.dataset.url || window.location.href;
+					this.copyToClipboard(url, btn);
 				});
 			});
 		},
 
-		copyToClipboard(text) {
+		copyToClipboard(text, btn) {
+			const copyFn = () => {
+				// Show feedback
+				btn.classList.add("copied");
+				
+				const iconCopy = btn.querySelector(".icon-copy");
+				const iconCheck = btn.querySelector(".icon-check");
+				const copyText = btn.querySelector(".copy-text");
+				
+				if (iconCopy) iconCopy.style.display = "none";
+				if (iconCheck) iconCheck.style.display = "block";
+				if (copyText) copyText.textContent = "Copied!";
+				
+				setTimeout(() => {
+					btn.classList.remove("copied");
+					if (iconCopy) iconCopy.style.display = "block";
+					if (iconCheck) iconCheck.style.display = "none";
+					if (copyText) copyText.textContent = "Copy";
+				}, 2000);
+			};
+
 			if (navigator.clipboard) {
-				navigator.clipboard.writeText(text);
+				navigator.clipboard.writeText(text).then(copyFn);
 			} else {
 				// Fallback
 				const textarea = document.createElement("textarea");
@@ -530,6 +544,7 @@
 				textarea.select();
 				document.execCommand("copy");
 				document.body.removeChild(textarea);
+				copyFn();
 			}
 		},
 	};
