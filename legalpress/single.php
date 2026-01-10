@@ -182,7 +182,7 @@ get_header();
                         <?php esc_html_e('Related Articles', 'legalpress'); ?>
                     </h2>
 
-                    <div class="posts-grid posts-grid--3">
+                    <div class="posts-grid posts-grid-3">
                         <?php
                         while ($related_query->have_posts()):
                             $related_query->the_post();

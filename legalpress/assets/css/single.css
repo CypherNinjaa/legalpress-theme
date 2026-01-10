@@ -9,7 +9,8 @@
 
 .single-header {
 	padding: var(--space-12) 0;
-	background-color: transparent;
+	background: none !important;
+	background-color: transparent !important;
 }
 
 .single-category {
@@ -1007,7 +1008,7 @@
 .related-posts {
 	margin-top: var(--space-16);
 	padding: var(--space-12) 0;
-	background-color: var(--color-bg-secondary);
+	background-color: transparent;
 }
 
 .related-posts-header {

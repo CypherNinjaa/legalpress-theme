@@ -101,12 +101,20 @@
 	overflow: hidden;
 	aspect-ratio: 16 / 10;
 	background-color: var(--color-bg-tertiary);
+	display: block;
+}
+
+.post-card-image a {
+	display: block;
+	width: 100%;
+	height: 100%;
 }
 
 .post-card-image img {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
+	display: block;
 	transition: transform var(--duration-slow) var(--ease-out);
 }
 
@@ -268,27 +276,31 @@
 	box-shadow: var(--shadow-md);
 }
 
-/* Category-specific colors */
+/* Category-specific colors - ONLY for category badges */
 .post-card-category.category-law,
-.category-law {
+.single-category.category-law,
+.category-badge.category-law {
 	background-color: var(--color-law);
 	color: white;
 }
 
 .post-card-category.category-judgments,
-.category-judgments {
+.single-category.category-judgments,
+.category-badge.category-judgments {
 	background-color: var(--color-judgments);
 	color: white;
 }
 
 .post-card-category.category-editorial,
-.category-editorial {
+.single-category.category-editorial,
+.category-badge.category-editorial {
 	background-color: var(--color-editorial);
 	color: white;
 }
 
 .post-card-category.category-news,
-.category-news {
+.single-category.category-news,
+.category-badge.category-news {
 	background-color: var(--color-news);
 	color: white;
 }
