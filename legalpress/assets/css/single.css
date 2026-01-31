@@ -1522,13 +1522,35 @@
 }
 
 [data-theme="dark"] .comment-form input,
-[data-theme="dark"] .comment-form textarea {
-	background-color: var(--color-bg-tertiary);
-	border-color: var(--color-border-primary);
-	color: var(--color-text-primary);
+[data-theme="dark"] .comment-form textarea,
+[data-theme="dark"] .comment-form input[type="text"],
+[data-theme="dark"] .comment-form input[type="email"],
+[data-theme="dark"] .comment-form input[type="url"] {
+	background-color: var(--color-bg-tertiary) !important;
+	border-color: var(--color-border-secondary) !important;
+	color: var(--color-text-primary) !important;
 }
 
 [data-theme="dark"] .comment-form input::placeholder,
 [data-theme="dark"] .comment-form textarea::placeholder {
 	color: var(--color-text-muted);
+}
+
+[data-theme="dark"] .comment-form label {
+	color: var(--color-text-secondary);
+}
+
+[data-theme="dark"] .comment-reply-title,
+[data-theme="dark"] .comments-title {
+	color: var(--color-text-primary);
+}
+
+[data-theme="dark"] .logged-in-as,
+[data-theme="dark"] .logged-in-as a,
+[data-theme="dark"] .comment-notes {
+	color: var(--color-text-secondary);
+}
+
+[data-theme="dark"] .logged-in-as a:hover {
+	color: var(--color-accent);
 }
