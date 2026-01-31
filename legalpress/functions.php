@@ -18,7 +18,7 @@ if (!defined('ABSPATH')) {
  * Define theme constants with existence check - SECURITY
  */
 if (!defined('LEGALPRESS_VERSION')) {
-    define('LEGALPRESS_VERSION', '2.3.0');
+    define('LEGALPRESS_VERSION', '2.4.0');
 }
 if (!defined('LEGALPRESS_DIR')) {
     define('LEGALPRESS_DIR', get_template_directory());
