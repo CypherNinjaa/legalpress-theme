@@ -150,6 +150,29 @@
 	opacity: 0.9;
 }
 
+/* Site Identity (when logo is present) */
+.site-identity {
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+}
+
+.site-identity .site-title {
+	font-size: var(--text-xl);
+}
+
+.site-tagline {
+	margin: 0;
+	font-size: var(--text-xs);
+	color: var(--color-text-tertiary);
+	font-weight: 400;
+	letter-spacing: 0.02em;
+	max-width: 200px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
 .site-title {
 	margin: 0;
 	font-family: var(--font-heading);

@@ -90,9 +90,22 @@ if (!$monthly_recap_enabled && !$opinion_enabled) {
     // =========================================================================
     if ($monthly_recap_enabled) :
         $monthly_recap_query = legalpress_get_monthly_recap_posts($monthly_recap_count);
+        $current_month = legalpress_get_current_month_name();
+        
+        // If no posts this month, get recent posts as fallback
+        $has_monthly_posts = $monthly_recap_query->have_posts();
+        if (!$has_monthly_posts) {
+            $monthly_recap_query = new WP_Query(array(
+                'post_type' => 'post',
+                'post_status' => 'publish',
+                'posts_per_page' => $monthly_recap_count,
+                'orderby' => 'date',
+                'order' => 'DESC',
+                'ignore_sticky_posts' => true,
+            ));
+        }
         
         if ($monthly_recap_query->have_posts()) :
-            $current_month = legalpress_get_current_month_name();
     ?>
     <div class="sidebar-widget sidebar-widget--monthly-recap reveal" data-animate="fade-in-up">
         <div class="sidebar-widget__header">
@@ -107,9 +120,7 @@ if (!$monthly_recap_enabled && !$opinion_enabled) {
         </div>
         
         <div class="sidebar-widget__content">
-            <?php while ($monthly_recap_query->have_posts()) : $monthly_recap_query->the_post(); 
-                $views = legalpress_get_post_views(get_the_ID());
-            ?>
+            <?php while ($monthly_recap_query->have_posts()) : $monthly_recap_query->the_post(); ?>
             <article class="sidebar-post sidebar-post--recap">
                 <div class="sidebar-post__image">
                     <a href="<?php the_permalink(); ?>">
@@ -123,15 +134,6 @@ if (!$monthly_recap_enabled && !$opinion_enabled) {
                                     <polyline points="21 15 16 10 5 21"/>
                                 </svg>
                             </div>
-                        <?php endif; ?>
-                        <?php if ($views > 0) : ?>
-                        <span class="sidebar-post__badge">
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-                                <circle cx="12" cy="12" r="3"/>
-                            </svg>
-                            <?php echo number_format_i18n($views); ?>
-                        </span>
                         <?php endif; ?>
                     </a>
                 </div>
@@ -155,7 +157,11 @@ if (!$monthly_recap_enabled && !$opinion_enabled) {
                     <line x1="8" y1="2" x2="8" y2="6"/>
                     <line x1="3" y1="10" x2="21" y2="10"/>
                 </svg>
-                <?php echo esc_html($current_month); ?>
+                <?php if ($has_monthly_posts) : ?>
+                    <?php echo esc_html($current_month); ?>
+                <?php else : ?>
+                    <?php esc_html_e('Recent Posts', 'legalpress'); ?>
+                <?php endif; ?>
             </span>
         </div>
     </div>
