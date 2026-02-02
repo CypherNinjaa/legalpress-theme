@@ -1,0 +1,651 @@
+/* ==========================================================================
+   RESPONSIVE CSS
+   LegalPress Theme - Modern Legal News Theme
+   ========================================================================== */
+
+/* ==========================================================================
+   RESPONSIVE BREAKPOINTS
+   
+   xs: 0px - 479px       (Small phones)
+   sm: 480px - 639px     (Large phones)
+   md: 640px - 767px     (Small tablets)
+   lg: 768px - 1023px    (Tablets)
+   xl: 1024px - 1199px   (Small laptops)
+   2xl: 1200px - 1399px  (Laptops/Desktops)
+   3xl: 1400px+          (Large screens)
+   ========================================================================== */
+
+/* ==========================================================================
+   EXTRA SMALL SCREENS (0 - 479px)
+   ========================================================================== */
+
+@media (max-width: 479px) {
+	/* Typography adjustments */
+	html {
+		font-size: 14px;
+	}
+
+	h1 {
+		font-size: var(--text-3xl);
+	}
+	h2 {
+		font-size: var(--text-2xl);
+	}
+	h3 {
+		font-size: var(--text-xl);
+	}
+
+	/* Container padding */
+	.container {
+		padding-left: var(--space-4);
+		padding-right: var(--space-4);
+	}
+
+	/* Section spacing */
+	.section {
+		padding-top: var(--space-10);
+		padding-bottom: var(--space-10);
+	}
+
+	/* Buttons */
+	.btn {
+		padding: var(--space-3) var(--space-5);
+		font-size: var(--text-sm);
+	}
+
+	.btn-lg {
+		padding: var(--space-3) var(--space-6);
+	}
+
+	/* Hero */
+	.hero-inner {
+		padding: var(--space-8) 0;
+	}
+
+	.hero-main {
+		min-height: 260px;
+	}
+
+	.hero-main-content {
+		padding: var(--space-5);
+	}
+
+	.hero-main-title {
+		font-size: var(--text-xl);
+	}
+
+	.hero-centered .hero-title {
+		font-size: var(--text-2xl);
+	}
+
+	/* Post cards */
+	.post-card-content {
+		padding: var(--space-4);
+	}
+
+	.post-card-title {
+		font-size: var(--text-base);
+	}
+
+	.post-card-excerpt {
+		font-size: var(--text-sm);
+		-webkit-line-clamp: 2;
+	}
+
+	/* Single post */
+	.post-title {
+		font-size: var(--text-2xl);
+	}
+
+	.post-excerpt {
+		font-size: var(--text-base);
+	}
+
+	.entry-content {
+		font-size: var(--text-base);
+	}
+
+	/* Newsletter */
+	.newsletter-section {
+		padding: var(--space-10) 0;
+	}
+
+	.newsletter-form-wrapper {
+		padding: var(--space-5);
+	}
+
+	.newsletter-title {
+		font-size: var(--text-2xl);
+	}
+
+	/* Footer */
+	.footer-main {
+		padding: var(--space-10) 0;
+	}
+
+	.footer-grid {
+		gap: var(--space-8);
+	}
+}
+
+/* ==========================================================================
+   SMALL SCREENS (480px - 639px)
+   ========================================================================== */
+
+@media (min-width: 480px) and (max-width: 639px) {
+	/* Container */
+	.container {
+		padding-left: var(--space-5);
+		padding-right: var(--space-5);
+	}
+
+	/* Hero */
+	.hero-main {
+		min-height: 320px;
+	}
+
+	.hero-main-title {
+		font-size: var(--text-2xl);
+	}
+
+	/* Post grid */
+	.posts-grid-2,
+	.posts-grid-3,
+	.posts-grid-4 {
+		grid-template-columns: 1fr;
+	}
+
+	/* Newsletter */
+	.newsletter-form {
+		flex-direction: column;
+	}
+}
+
+/* ==========================================================================
+   MEDIUM SCREENS (640px - 767px)
+   ========================================================================== */
+
+@media (min-width: 640px) and (max-width: 767px) {
+	/* Post grids */
+	.posts-grid-2 {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	.posts-grid-3,
+	.posts-grid-4 {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	/* Hero */
+	.hero-main {
+		min-height: 360px;
+	}
+
+	.hero-main-title {
+		font-size: var(--text-3xl);
+	}
+
+	/* Footer grid */
+	.footer-grid {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+/* ==========================================================================
+   TABLET SCREENS (768px - 1023px)
+   ========================================================================== */
+
+@media (min-width: 768px) and (max-width: 1023px) {
+	/* Post grids */
+	.posts-grid-2 {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	.posts-grid-3 {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	.posts-grid-4 {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	/* Hero layout */
+	.hero-featured {
+		grid-template-columns: 1fr;
+	}
+
+	.hero-main {
+		min-height: 400px;
+	}
+
+	.hero-secondary {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	/* Single post layout - no sidebar */
+	.single-post-layout {
+		grid-template-columns: 1fr;
+	}
+
+	.sidebar {
+		display: none;
+	}
+
+	/* Footer grid */
+	.footer-grid {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	.footer-brand {
+		grid-column: span 2;
+	}
+}
+
+/* ==========================================================================
+   SMALL LAPTOP SCREENS (1024px - 1199px)
+   ========================================================================== */
+
+@media (min-width: 1024px) and (max-width: 1199px) {
+	/* Post grids */
+	.posts-grid-3 {
+		grid-template-columns: repeat(3, 1fr);
+		gap: var(--space-6);
+	}
+
+	.posts-grid-4 {
+		grid-template-columns: repeat(3, 1fr);
+	}
+
+	/* Hero */
+	.hero-featured {
+		grid-template-columns: 1.3fr 1fr;
+		gap: var(--space-8);
+	}
+
+	/* Single post layout */
+	.single-post-layout {
+		grid-template-columns: 1fr 280px;
+		gap: var(--space-10);
+	}
+
+	/* Footer */
+	.footer-grid {
+		grid-template-columns: 1.2fr repeat(3, 1fr);
+		gap: var(--space-8);
+	}
+}
+
+/* ==========================================================================
+   LAPTOP/DESKTOP SCREENS (1200px - 1399px)
+   ========================================================================== */
+
+@media (min-width: 1200px) and (max-width: 1399px) {
+	/* Hero */
+	.hero-featured {
+		grid-template-columns: 1.5fr 1fr;
+	}
+
+	/* Single post */
+	.single-post-layout {
+		grid-template-columns: 1fr 300px;
+	}
+
+	/* Newsletter */
+	.newsletter-inner {
+		grid-template-columns: 1fr 1.3fr;
+	}
+}
+
+/* ==========================================================================
+   LARGE SCREENS (1400px+)
+   ========================================================================== */
+
+@media (min-width: 1400px) {
+	/* Container */
+	.container {
+		max-width: var(--container-2xl);
+	}
+
+	/* Hero */
+	.hero-inner {
+		padding: var(--space-24) 0;
+	}
+
+	.hero-main {
+		min-height: 560px;
+	}
+
+	/* Post grids */
+	.posts-grid-4 {
+		grid-template-columns: repeat(4, 1fr);
+	}
+
+	/* Single post */
+	.single-post-layout {
+		grid-template-columns: 1fr var(--sidebar-width);
+		gap: var(--space-16);
+	}
+
+	/* Section spacing */
+	.section {
+		padding-top: var(--space-20);
+		padding-bottom: var(--space-20);
+	}
+}
+
+/* ==========================================================================
+   RESPONSIVE UTILITIES
+   ========================================================================== */
+
+/* Hide/Show utilities */
+.hidden-xs {
+	display: none !important;
+}
+@media (min-width: 480px) {
+	.hidden-xs {
+		display: block !important;
+	}
+}
+
+.hidden-sm {
+	display: block !important;
+}
+@media (min-width: 640px) {
+	.hidden-sm {
+		display: none !important;
+	}
+}
+
+.hidden-md {
+	display: block !important;
+}
+@media (min-width: 768px) {
+	.hidden-md {
+		display: none !important;
+	}
+}
+
+.hidden-lg {
+	display: block !important;
+}
+@media (min-width: 1024px) {
+	.hidden-lg {
+		display: none !important;
+	}
+}
+
+.hidden-xl {
+	display: block !important;
+}
+@media (min-width: 1200px) {
+	.hidden-xl {
+		display: none !important;
+	}
+}
+
+/* Show only on specific breakpoints */
+.show-xs {
+	display: block !important;
+}
+@media (min-width: 480px) {
+	.show-xs {
+		display: none !important;
+	}
+}
+
+.show-sm {
+	display: none !important;
+}
+@media (min-width: 480px) and (max-width: 639px) {
+	.show-sm {
+		display: block !important;
+	}
+}
+
+.show-md {
+	display: none !important;
+}
+@media (min-width: 640px) and (max-width: 767px) {
+	.show-md {
+		display: block !important;
+	}
+}
+
+.show-lg {
+	display: none !important;
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+	.show-lg {
+		display: block !important;
+	}
+}
+
+.show-xl {
+	display: none !important;
+}
+@media (min-width: 1024px) {
+	.show-xl {
+		display: block !important;
+	}
+}
+
+/* Mobile only */
+@media (max-width: 767px) {
+	.mobile-only {
+		display: block !important;
+	}
+	.desktop-only {
+		display: none !important;
+	}
+}
+
+/* Desktop only */
+@media (min-width: 768px) {
+	.mobile-only {
+		display: none !important;
+	}
+	.desktop-only {
+		display: block !important;
+	}
+}
+
+/* ==========================================================================
+   RESPONSIVE TEXT ALIGNMENT
+   ========================================================================== */
+
+@media (max-width: 767px) {
+	.text-center-mobile {
+		text-align: center !important;
+	}
+	.text-left-mobile {
+		text-align: left !important;
+	}
+}
+
+@media (min-width: 768px) {
+	.text-center-desktop {
+		text-align: center !important;
+	}
+	.text-left-desktop {
+		text-align: left !important;
+	}
+}
+
+/* ==========================================================================
+   RESPONSIVE FLEX UTILITIES
+   ========================================================================== */
+
+@media (max-width: 767px) {
+	.flex-col-mobile {
+		flex-direction: column !important;
+	}
+
+	.items-center-mobile {
+		align-items: center !important;
+	}
+
+	.justify-center-mobile {
+		justify-content: center !important;
+	}
+}
+
+/* ==========================================================================
+   RESPONSIVE SPACING
+   ========================================================================== */
+
+@media (max-width: 767px) {
+	.gap-mobile-sm {
+		gap: var(--space-4) !important;
+	}
+	.py-mobile-sm {
+		padding-top: var(--space-6) !important;
+		padding-bottom: var(--space-6) !important;
+	}
+	.px-mobile-sm {
+		padding-left: var(--space-4) !important;
+		padding-right: var(--space-4) !important;
+	}
+	.mb-mobile-sm {
+		margin-bottom: var(--space-4) !important;
+	}
+}
+
+/* ==========================================================================
+   TOUCH DEVICE OPTIMIZATIONS
+   ========================================================================== */
+
+@media (hover: none) and (pointer: coarse) {
+	/* Increase tap targets */
+	.btn {
+		min-height: 44px;
+		min-width: 44px;
+	}
+
+	.main-navigation .menu-item > a {
+		padding: var(--space-4);
+	}
+
+	/* Disable hover effects */
+	.post-card:hover {
+		transform: none;
+	}
+
+	.post-card:hover .post-card-image img {
+		transform: none;
+	}
+
+	/* Active states instead */
+	.post-card:active {
+		transform: scale(0.98);
+	}
+
+	.btn:active {
+		transform: scale(0.95);
+	}
+}
+
+/* ==========================================================================
+   HIGH DPI / RETINA DISPLAYS
+   ========================================================================== */
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+	/* Sharper borders */
+	.post-card,
+	.widget,
+	.form-input,
+	.form-textarea {
+		border-width: 0.5px;
+	}
+}
+
+/* ==========================================================================
+   LANDSCAPE ORIENTATION (Mobile)
+   ========================================================================== */
+
+@media (max-height: 500px) and (orientation: landscape) {
+	/* Header adjustments */
+	.site-header {
+		--header-height: 56px;
+	}
+
+	/* Hero adjustments */
+	.hero-inner {
+		padding: var(--space-6) 0;
+	}
+
+	.hero-main {
+		min-height: 200px;
+	}
+
+	/* Hide non-essential content */
+	.hero-scroll {
+		display: none;
+	}
+}
+
+/* ==========================================================================
+   PRINT STYLES
+   ========================================================================== */
+
+@media print {
+	/* Reset colors */
+	* {
+		background: transparent !important;
+		color: #000 !important;
+		box-shadow: none !important;
+		text-shadow: none !important;
+	}
+
+	/* Hide non-essential elements */
+	.site-header,
+	.site-footer,
+	.sidebar,
+	.share-buttons,
+	.post-navigation,
+	.related-posts,
+	.comments-area,
+	.back-to-top,
+	.newsletter-section {
+		display: none !important;
+	}
+
+	/* Full width content */
+	.container {
+		max-width: 100% !important;
+		padding: 0 !important;
+	}
+
+	.single-post-layout {
+		grid-template-columns: 1fr !important;
+	}
+
+	/* Page breaks */
+	h1,
+	h2,
+	h3,
+	h4 {
+		page-break-after: avoid;
+	}
+
+	img {
+		page-break-inside: avoid;
+	}
+
+	p {
+		orphans: 3;
+		widows: 3;
+	}
+
+	/* Links */
+	a[href]::after {
+		content: " (" attr(href) ")";
+		font-size: 0.8em;
+		color: #666;
+	}
+
+	a[href^="#"]::after,
+	a[href^="javascript:"]::after {
+		content: "";
+	}
+}
