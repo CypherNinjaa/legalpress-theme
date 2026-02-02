@@ -235,6 +235,30 @@ function legalpress_excerpt_more($more)
 add_filter('excerpt_more', 'legalpress_excerpt_more');
 
 /**
+ * Get Category Choices for Customizer Dropdowns
+ * Returns array of category slug => name for use in select controls
+ *
+ * @since 2.5.0
+ * @return array
+ */
+function legalpress_get_category_choices() {
+    $choices = array('' => __('— Select Category —', 'legalpress'));
+    
+    $categories = get_categories(array(
+        'orderby' => 'name',
+        'order' => 'ASC',
+        'hide_empty' => false,
+        'exclude' => array(get_cat_ID('uncategorized')),
+    ));
+    
+    foreach ($categories as $category) {
+        $choices[$category->slug] = $category->name;
+    }
+    
+    return $choices;
+}
+
+/**
  * Get First Category - SECURITY: Sanitized
  *
  * @param int|null $post_id Post ID.
@@ -1305,4 +1329,153 @@ function legalpress_get_ticker_posts($count = 10, $category = '') {
     }
     
     return new WP_Query($args);
+}
+
+// =============================================================================
+// POST VIEWS TRACKING
+// =============================================================================
+
+/**
+ * Track post views
+ * Uses post meta to store view count
+ *
+ * @since 2.5.0
+ * @param int $post_id Post ID
+ */
+function legalpress_track_post_views($post_id = null) {
+    if (!is_single()) return;
+    
+    if (empty($post_id)) {
+        $post_id = get_the_ID();
+    }
+    
+    // Don't track for logged in admins
+    if (current_user_can('manage_options')) return;
+    
+    // Check if already counted in this session
+    $viewed_key = 'legalpress_viewed_' . $post_id;
+    if (isset($_COOKIE[$viewed_key])) return;
+    
+    $count = get_post_meta($post_id, 'legalpress_post_views', true);
+    $count = empty($count) ? 1 : $count + 1;
+    update_post_meta($post_id, 'legalpress_post_views', $count);
+    
+    // Set cookie to prevent multiple counts (30 min expiry)
+    setcookie($viewed_key, '1', time() + 1800, '/');
+}
+add_action('wp_head', 'legalpress_track_post_views');
+
+/**
+ * Get post view count
+ *
+ * @since 2.5.0
+ * @param int $post_id Post ID
+ * @return int View count
+ */
+function legalpress_get_post_views($post_id = null) {
+    if (empty($post_id)) {
+        $post_id = get_the_ID();
+    }
+    
+    $count = get_post_meta($post_id, 'legalpress_post_views', true);
+    return empty($count) ? 0 : absint($count);
+}
+
+/**
+ * Get Monthly Recap Posts
+ * Returns the most viral posts from the current month
+ *
+ * @since 2.5.0
+ * @param int $count Number of posts
+ * @return WP_Query
+ */
+function legalpress_get_monthly_recap_posts($count = 5) {
+    $current_month = date('n');
+    $current_year = date('Y');
+    
+    $args = array(
+        'post_type' => 'post',
+        'post_status' => 'publish',
+        'posts_per_page' => absint($count),
+        'meta_key' => 'legalpress_post_views',
+        'orderby' => 'meta_value_num',
+        'order' => 'DESC',
+        'no_found_rows' => true,
+        'date_query' => array(
+            array(
+                'year' => $current_year,
+                'month' => $current_month,
+            ),
+        ),
+    );
+    
+    $query = new WP_Query($args);
+    
+    // If no posts with views in current month, get most commented
+    if (!$query->have_posts()) {
+        $args['orderby'] = 'comment_count';
+        unset($args['meta_key']);
+        $query = new WP_Query($args);
+    }
+    
+    // If still no posts, get latest from current month
+    if (!$query->have_posts()) {
+        $args['orderby'] = 'date';
+        $query = new WP_Query($args);
+    }
+    
+    // If still no posts (new month), get last month's viral posts
+    if (!$query->have_posts()) {
+        $last_month = $current_month - 1;
+        $last_year = $current_year;
+        if ($last_month < 1) {
+            $last_month = 12;
+            $last_year--;
+        }
+        
+        $args['meta_key'] = 'legalpress_post_views';
+        $args['orderby'] = 'meta_value_num';
+        $args['date_query'] = array(
+            array(
+                'year' => $last_year,
+                'month' => $last_month,
+            ),
+        );
+        $query = new WP_Query($args);
+    }
+    
+    return $query;
+}
+
+/**
+ * Get Opinion Posts
+ * Returns posts from the Opinion category
+ *
+ * @since 2.5.0
+ * @param int $count Number of posts
+ * @param string $category_slug Category slug to fetch
+ * @return WP_Query
+ */
+function legalpress_get_opinion_posts($count = 5, $category_slug = 'opinion') {
+    $args = array(
+        'post_type' => 'post',
+        'post_status' => 'publish',
+        'posts_per_page' => absint($count),
+        'orderby' => 'date',
+        'order' => 'DESC',
+        'no_found_rows' => true,
+        'category_name' => sanitize_title($category_slug),
+    );
+    
+    return new WP_Query($args);
+}
+
+/**
+ * Get the current month name
+ *
+ * @since 2.5.0
+ * @return string Month name
+ */
+function legalpress_get_current_month_name() {
+    return date_i18n('F Y');
 }

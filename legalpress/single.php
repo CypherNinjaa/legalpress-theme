@@ -12,6 +12,9 @@
 get_header();
 ?>
 
+<!-- Floating Social Share Sidebar -->
+<?php get_template_part('template-parts/floating-share'); ?>
+
 <?php while (have_posts()):
     the_post(); ?>
 
@@ -270,7 +273,7 @@ get_header();
                                 <span class="post-nav-title"><?php echo esc_html(get_the_title($prev_post)); ?></span>
                             </a>
                         <?php else: ?>
-                            <span></span>
+                            <div class="post-nav-empty"></div>
                         <?php endif; ?>
 
                         <?php if ($next_post): ?>
@@ -285,6 +288,8 @@ get_header();
                                 </span>
                                 <span class="post-nav-title"><?php echo esc_html(get_the_title($next_post)); ?></span>
                             </a>
+                        <?php else: ?>
+                            <div class="post-nav-empty"></div>
                         <?php endif; ?>
                     </div>
                 </div>

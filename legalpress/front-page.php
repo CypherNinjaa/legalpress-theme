@@ -192,37 +192,39 @@ $displayed_posts = array();
 </section>
 <?php endif; ?>
 
-<!-- Latest News Section -->
+<!-- Latest News Section with Sidebar -->
 <?php 
 $latest_news_enabled = get_theme_mod('legalpress_latest_news_enable', true);
 $latest_news_title = get_theme_mod('legalpress_latest_news_title', __('Latest News', 'legalpress'));
 $latest_news_count = get_theme_mod('legalpress_latest_news_count', 6);
+$has_homepage_sidebar = get_theme_mod('legalpress_monthly_recap_enable', true) || get_theme_mod('legalpress_opinion_enable', true);
 
 if ($latest_news_enabled) : 
 ?>
 <section class="section section--latest-news">
     <div class="container">
+        <div class="homepage-layout <?php echo $has_homepage_sidebar ? 'has-sidebar' : ''; ?>">
+            <div class="homepage-main">
+                <!-- Section Header -->
+                <div class="section-header reveal">
+                    <h2 class="section-title">
+                        <svg class="section-title__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z" />
+                            <polyline points="13 2 13 9 20 9" />
+                        </svg>
+                        <?php echo esc_html($latest_news_title); ?>
+                    </h2>
+                    <a href="<?php echo esc_url(get_permalink(get_option('page_for_posts'))); ?>" class="section-link">
+                        <?php esc_html_e('View All Articles', 'legalpress'); ?>
+                        <svg class="section-link__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="5" y1="12" x2="19" y2="12" />
+                            <polyline points="12 5 19 12 12 19" />
+                        </svg>
+                    </a>
+                </div>
 
-        <!-- Section Header -->
-        <div class="section-header reveal">
-            <h2 class="section-title">
-                <svg class="section-title__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z" />
-                    <polyline points="13 2 13 9 20 9" />
-                </svg>
-                <?php echo esc_html($latest_news_title); ?>
-            </h2>
-            <a href="<?php echo esc_url(get_permalink(get_option('page_for_posts'))); ?>" class="section-link">
-                <?php esc_html_e('View All Articles', 'legalpress'); ?>
-                <svg class="section-link__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <line x1="5" y1="12" x2="19" y2="12" />
-                    <polyline points="12 5 19 12 12 19" />
-                </svg>
-            </a>
-        </div>
-
-        <!-- Posts Grid with Skeleton Loading -->
-        <div class="posts-grid stagger-children">
+                <!-- Posts Grid with Skeleton Loading -->
+                <div class="posts-grid stagger-children">
             <?php
             $latest_query = legalpress_get_latest_posts($latest_news_count, $displayed_posts);
 
@@ -313,7 +315,16 @@ if ($latest_news_enabled) :
                 wp_reset_postdata();
             endif;
             ?>
-        </div>
+                </div>
+            </div><!-- /.homepage-main -->
+
+            <?php if ($has_homepage_sidebar) : ?>
+            <div class="homepage-sidebar-wrapper">
+                <?php get_template_part('template-parts/sidebar', 'homepage'); ?>
+            </div>
+            <?php endif; ?>
+
+        </div><!-- /.homepage-layout -->
     </div>
 </section>
 <?php endif; ?>

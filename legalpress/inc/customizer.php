@@ -389,6 +389,20 @@ function legalpress_lawchakra_customize_register($wp_customize) {
     ));
 
     // =========================================================================
+    // FLOATING SHARE SIDEBAR
+    // =========================================================================
+    $wp_customize->add_setting('legalpress_floating_share_enable', array(
+        'default'           => true,
+        'sanitize_callback' => 'wp_validate_boolean',
+    ));
+    $wp_customize->add_control('legalpress_floating_share_enable', array(
+        'label'       => __('Enable Floating Share Buttons', 'legalpress'),
+        'description' => __('Show floating social share sidebar on single posts (desktop only).', 'legalpress'),
+        'section'     => 'legalpress_author_section',
+        'type'        => 'checkbox',
+    ));
+
+    // =========================================================================
     // HOMEPAGE SECTIONS
     // =========================================================================
     $wp_customize->add_section('legalpress_homepage_section', array(
@@ -728,6 +742,126 @@ function legalpress_lawchakra_customize_register($wp_customize) {
         'input_attrs' => array(
             'min'  => 1,
             'max'  => 30,
+            'step' => 1,
+        ),
+    ));
+
+    // =========================================================================
+    // HOMEPAGE SIDEBAR WIDGETS (Monthly Recap & Opinion)
+    // =========================================================================
+    $wp_customize->add_section('legalpress_homepage_sidebar_section', array(
+        'title'       => __('Homepage Sidebar', 'legalpress'),
+        'description' => __('Configure Monthly Recap and Opinion widgets for homepage sidebar.', 'legalpress'),
+        'priority'    => 32,
+    ));
+
+    // ----- Monthly Recap Settings -----
+    $wp_customize->add_setting('legalpress_monthly_recap_heading', array(
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'legalpress_monthly_recap_heading', array(
+        'label'       => __('── Monthly Recap Widget ──', 'legalpress'),
+        'description' => __('Shows the most viral posts from this month.', 'legalpress'),
+        'section'     => 'legalpress_homepage_sidebar_section',
+        'type'        => 'hidden',
+    )));
+
+    // Enable Monthly Recap
+    $wp_customize->add_setting('legalpress_monthly_recap_enable', array(
+        'default'           => true,
+        'sanitize_callback' => 'wp_validate_boolean',
+    ));
+    $wp_customize->add_control('legalpress_monthly_recap_enable', array(
+        'label'   => __('Enable Monthly Recap Widget', 'legalpress'),
+        'section' => 'legalpress_homepage_sidebar_section',
+        'type'    => 'checkbox',
+    ));
+
+    // Monthly Recap Title
+    $wp_customize->add_setting('legalpress_monthly_recap_title', array(
+        'default'           => 'Monthly Recap',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control('legalpress_monthly_recap_title', array(
+        'label'   => __('Monthly Recap Title', 'legalpress'),
+        'section' => 'legalpress_homepage_sidebar_section',
+        'type'    => 'text',
+    ));
+
+    // Monthly Recap Posts Count
+    $wp_customize->add_setting('legalpress_monthly_recap_count', array(
+        'default'           => 4,
+        'sanitize_callback' => 'absint',
+    ));
+    $wp_customize->add_control('legalpress_monthly_recap_count', array(
+        'label'   => __('Number of Posts', 'legalpress'),
+        'section' => 'legalpress_homepage_sidebar_section',
+        'type'    => 'number',
+        'input_attrs' => array(
+            'min'  => 2,
+            'max'  => 10,
+            'step' => 1,
+        ),
+    ));
+
+    // ----- Opinion Settings -----
+    $wp_customize->add_setting('legalpress_opinion_heading', array(
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'legalpress_opinion_heading', array(
+        'label'       => __('── Opinion Widget ──', 'legalpress'),
+        'description' => __('Shows posts from a specific category.', 'legalpress'),
+        'section'     => 'legalpress_homepage_sidebar_section',
+        'type'        => 'hidden',
+    )));
+
+    // Enable Opinion
+    $wp_customize->add_setting('legalpress_opinion_enable', array(
+        'default'           => true,
+        'sanitize_callback' => 'wp_validate_boolean',
+    ));
+    $wp_customize->add_control('legalpress_opinion_enable', array(
+        'label'   => __('Enable Opinion Widget', 'legalpress'),
+        'section' => 'legalpress_homepage_sidebar_section',
+        'type'    => 'checkbox',
+    ));
+
+    // Opinion Title
+    $wp_customize->add_setting('legalpress_opinion_title', array(
+        'default'           => 'Opinion',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control('legalpress_opinion_title', array(
+        'label'   => __('Opinion Widget Title', 'legalpress'),
+        'section' => 'legalpress_homepage_sidebar_section',
+        'type'    => 'text',
+    ));
+
+    // Opinion Category
+    $wp_customize->add_setting('legalpress_opinion_category', array(
+        'default'           => '',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'legalpress_opinion_category', array(
+        'label'       => __('Opinion Category', 'legalpress'),
+        'description' => __('Select the category to display.', 'legalpress'),
+        'section'     => 'legalpress_homepage_sidebar_section',
+        'type'        => 'select',
+        'choices'     => legalpress_get_category_choices(),
+    )));
+
+    // Opinion Posts Count
+    $wp_customize->add_setting('legalpress_opinion_count', array(
+        'default'           => 4,
+        'sanitize_callback' => 'absint',
+    ));
+    $wp_customize->add_control('legalpress_opinion_count', array(
+        'label'   => __('Number of Posts', 'legalpress'),
+        'section' => 'legalpress_homepage_sidebar_section',
+        'type'    => 'number',
+        'input_attrs' => array(
+            'min'  => 2,
+            'max'  => 10,
             'step' => 1,
         ),
     ));

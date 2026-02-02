@@ -204,6 +204,84 @@
 	}
 
 	/**
+	 * Scroll to Top Button
+	 * Shows/hides button based on scroll position
+	 * Smoothly scrolls to top when clicked
+	 */
+	function initScrollToTop() {
+		const scrollBtn = document.getElementById("scroll-to-top");
+		if (!scrollBtn) return;
+
+		const scrollThreshold = 400; // Show button after scrolling 400px
+		let isScrolling = false;
+
+		// Show/hide button based on scroll position
+		function toggleButtonVisibility() {
+			if (window.scrollY > scrollThreshold) {
+				scrollBtn.classList.add("visible");
+			} else {
+				scrollBtn.classList.remove("visible");
+			}
+		}
+
+		// Throttled scroll handler for better performance
+		function handleScroll() {
+			if (!isScrolling) {
+				window.requestAnimationFrame(function () {
+					toggleButtonVisibility();
+					isScrolling = false;
+				});
+				isScrolling = true;
+			}
+		}
+
+		// Scroll to top with smooth animation
+		function scrollToTop() {
+			window.scrollTo({
+				top: 0,
+				behavior: "smooth",
+			});
+		}
+
+		// Event listeners
+		window.addEventListener("scroll", handleScroll, { passive: true });
+		scrollBtn.addEventListener("click", scrollToTop);
+
+		// Initial check
+		toggleButtonVisibility();
+	}
+
+	/**
+	 * Initialize Floating Share Toggle
+	 * Allows users to hide/show the floating share sidebar
+	 */
+	function initFloatingShareToggle() {
+		const floatingShare = document.querySelector(".floating-share");
+		const toggleBtn = document.querySelector(".floating-share__toggle");
+
+		if (!floatingShare || !toggleBtn) return;
+
+		// Check localStorage for saved state
+		const isHidden =
+			localStorage.getItem("legalpress_floating_share_hidden") === "true";
+		if (isHidden) {
+			floatingShare.classList.add("is-hidden");
+		}
+
+		// Toggle visibility on click
+		toggleBtn.addEventListener("click", function () {
+			floatingShare.classList.toggle("is-hidden");
+
+			// Save state to localStorage
+			const nowHidden = floatingShare.classList.contains("is-hidden");
+			localStorage.setItem("legalpress_floating_share_hidden", nowHidden);
+
+			// Update title
+			this.title = nowHidden ? "Show share buttons" : "Hide share buttons";
+		});
+	}
+
+	/**
 	 * Initialize all components
 	 */
 	function init() {
@@ -214,6 +292,8 @@
 		initSimilarPosts();
 		initStickyBreadcrumb();
 		initAuthorBioExpand();
+		initScrollToTop();
+		initFloatingShareToggle();
 	}
 
 	// Run on DOM ready
