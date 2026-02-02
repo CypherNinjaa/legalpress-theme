@@ -136,6 +136,11 @@
     </svg>
 </button>
 
+<?php 
+// Mobile Bottom Navigation (independent component)
+get_template_part('template-parts/mobile-bottom-nav'); 
+?>
+
 <?php wp_footer(); ?>
 
 </body>

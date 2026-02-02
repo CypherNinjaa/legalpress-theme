@@ -865,6 +865,83 @@ function legalpress_lawchakra_customize_register($wp_customize) {
             'step' => 1,
         ),
     ));
+
+    // =========================================================================
+    // MOBILE BOTTOM NAVIGATION
+    // =========================================================================
+    $wp_customize->add_section('legalpress_mobile_nav_section', array(
+        'title'       => __('Mobile Bottom Navigation', 'legalpress'),
+        'description' => __('Configure the mobile bottom navigation bar.', 'legalpress'),
+        'priority'    => 35,
+    ));
+
+    // Enable Mobile Bottom Nav
+    $wp_customize->add_setting('legalpress_mobile_bottom_nav', array(
+        'default'           => true,
+        'sanitize_callback' => 'wp_validate_boolean',
+    ));
+    $wp_customize->add_control('legalpress_mobile_bottom_nav', array(
+        'label'       => __('Enable Mobile Bottom Navigation', 'legalpress'),
+        'description' => __('Show a fixed navigation bar at the bottom on mobile devices.', 'legalpress'),
+        'section'     => 'legalpress_mobile_nav_section',
+        'type'        => 'checkbox',
+    ));
+
+    // Show Home Button
+    $wp_customize->add_setting('legalpress_bottom_nav_home', array(
+        'default'           => true,
+        'sanitize_callback' => 'wp_validate_boolean',
+    ));
+    $wp_customize->add_control('legalpress_bottom_nav_home', array(
+        'label'   => __('Show Home Button', 'legalpress'),
+        'section' => 'legalpress_mobile_nav_section',
+        'type'    => 'checkbox',
+    ));
+
+    // Show Categories Button
+    $wp_customize->add_setting('legalpress_bottom_nav_categories', array(
+        'default'           => true,
+        'sanitize_callback' => 'wp_validate_boolean',
+    ));
+    $wp_customize->add_control('legalpress_bottom_nav_categories', array(
+        'label'   => __('Show Categories Button', 'legalpress'),
+        'section' => 'legalpress_mobile_nav_section',
+        'type'    => 'checkbox',
+    ));
+
+    // Show Search Button
+    $wp_customize->add_setting('legalpress_bottom_nav_search', array(
+        'default'           => true,
+        'sanitize_callback' => 'wp_validate_boolean',
+    ));
+    $wp_customize->add_control('legalpress_bottom_nav_search', array(
+        'label'   => __('Show Search Button (Center)', 'legalpress'),
+        'section' => 'legalpress_mobile_nav_section',
+        'type'    => 'checkbox',
+    ));
+
+    // Show Bookmarks Button
+    $wp_customize->add_setting('legalpress_bottom_nav_bookmarks', array(
+        'default'           => false,
+        'sanitize_callback' => 'wp_validate_boolean',
+    ));
+    $wp_customize->add_control('legalpress_bottom_nav_bookmarks', array(
+        'label'       => __('Show Saved/Bookmarks Button', 'legalpress'),
+        'description' => __('Allows users to save articles locally.', 'legalpress'),
+        'section'     => 'legalpress_mobile_nav_section',
+        'type'        => 'checkbox',
+    ));
+
+    // Show Menu Button
+    $wp_customize->add_setting('legalpress_bottom_nav_profile', array(
+        'default'           => true,
+        'sanitize_callback' => 'wp_validate_boolean',
+    ));
+    $wp_customize->add_control('legalpress_bottom_nav_profile', array(
+        'label'   => __('Show Menu Button', 'legalpress'),
+        'section' => 'legalpress_mobile_nav_section',
+        'type'    => 'checkbox',
+    ));
 }
 add_action('customize_register', 'legalpress_lawchakra_customize_register');
 
